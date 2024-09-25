@@ -8,7 +8,7 @@
 // b) Podem existir dias sem faturamento, como nos finais de semana e feriados. Estes dias devem ser ignorados no cálculo da média;
 
 const faturamento = require("./faturamento.json")
-const valoresValidos = filtrarValoresValidos(faturamento.faturamento)
+const valoresValidos = filtrarValoresValidos(faturamento)
 
 function filtrarValoresValidos(faturamento) {
     const valoresFaturamentoMensal = []
@@ -32,8 +32,7 @@ function checarFaturamentoMensal(valoresValidos) {
         (valor) => valor > mediaFaturamento
     ).length
 
-    const formatarParaReal = (valor) =>
-        (valor / 100).toFixed(2).replace(".", ",")
+    const formatarParaReal = (valor) => valor.toFixed(2).replace(".", ",")
 
     console.log(
         `O menor valor de faturamento ocorrido em um dia do mês: R$${formatarParaReal(
